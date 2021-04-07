@@ -1,0 +1,27 @@
+.container {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: block;
+}
+
+.metadata {
+  background: #7f8382;
+  color: #fff;
+  text-align: center;
+}
+
+.metadata p {
+  font-size: 75%;
+}
+
+.img {
+  width: 100%;
+  padding: 0 .5rem;
+  height: auto;
+  display: block;
+}
+
+.img img {
+  width: 100%;
+  height: auto;
+}
