@@ -4,7 +4,7 @@
  * caution: bandwith killer, cache the image.
  */
 
-export default async function imgFetcher (req, res) {
+export default async (req,res) => {
   if(req.query.slug.length == 2 ){
     const fetchImage = await fetch(`https://i.nhentai.net/galleries/${req.query.slug[0]}/${req.query.slug[1]}`)
     if (req.status == 404) {

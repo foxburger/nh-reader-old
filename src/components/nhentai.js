@@ -1,4 +1,12 @@
-async function Nhentai(code) {
+const types = {
+  "g": "gif",
+  "j": "jpg",
+  "p": "png",
+  "a": "apng",
+  "b": "bmp"
+}
+
+export const Nhentai = async (code) => {
   const res = await fetch(`https://nhentai.net/api/gallery/${code}`)
   if (res.status == 404) {
     var data = {
@@ -19,7 +27,13 @@ async function Nhentai(code) {
                 .map((x) => x.name)
                 .join(", "),
         "media_id": jsonData.media_id.toString(),
-        "page": jsonData.num_pages.toString(),
+        "page": jsonData.images.pages.map(page => {
+          return {
+            "media_type": page.t.replace(/[a-z]/gi, m => types[m]),
+            "media_width": page.w,
+            "media_height": page.h
+          }
+        })
       }
     }
   }

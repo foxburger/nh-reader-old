@@ -11,10 +11,6 @@ function Page({ metadata }) {
       </>
     )
   } else {
-    var imgUrl=[], i;
-    for (i = 1; i < metadata.content.page; i++){
-      imgUrl[i-1] = `/api/img/${metadata.content.media_id}/${i}.jpg`
-    }
     return (
       <>
       <Head>
@@ -24,17 +20,17 @@ function Page({ metadata }) {
         <div className={styles.metadata}>
           <p>{metadata.content.title_en}</p>
         </div>
-        {imgUrl.map( (url, key) => 
-            <div className={styles.img} key={key}>
-              <Image 
-                src={url}
-                alt={url}
-                layout="responsive"
-                width={600}
-                height={800}
-                unoptimized>
-              </Image>
-            </div>
+        {metadata.content.page.map( (data, index) => 
+            <div className={styles.img} key={index}>
+            <Image 
+              src={"/api/img/" + metadata.content.media_id.toString() + "/" + (index+1) + "." + data.media_type}
+              alt={"/api/img/" + metadata.content.media_id.toString() + "/" + (index+1) + "." + data.media_type}
+              layout="responsive"
+              width={data.media_width}
+              height={data.media_height}
+              unoptimized>
+            </Image>
+          </div>
         )}
       </div>
       </>
